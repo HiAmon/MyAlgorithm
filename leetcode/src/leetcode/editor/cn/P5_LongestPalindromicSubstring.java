@@ -23,7 +23,7 @@ package leetcode.editor.cn;
 public class P5_LongestPalindromicSubstring{
 	 public static void main(String[] args) {
 	 	 Solution solution = new P5_LongestPalindromicSubstring().new Solution();
-		 System.out.println(solution.longestPalindrome("hjsdsjfljiodsdoi"));
+		 System.out.println(solution.longestPalindrome("bb"));
 	 }
 
 	/**
@@ -39,19 +39,21 @@ class Solution {
     	boolean[][] dp = new boolean[s.length()][s.length()];
     	int maxlen = 0;
     	String res = "";
+    	//这里len是小于字符串长度，不用-1
 		for (int len = 0; len < s.length(); len++) {
 			for (int i = 0; i < s.length() - len; i++) {
 				int j = i + len;
 				if (len == 0){
 					dp[i][j] = true;
-				}else
-				if (len == 1){
+				}else if (len == 1){
+					//这里是给dp赋值，不要把判断条件加到if里面，是记录t/f，不是把false的跳过
 					dp[i][j] = s.charAt(i) == s.charAt(j);
 				}else {
 					dp[i][j] = (s.charAt(i) == s.charAt(j)) && dp[i+1][j-1];
 				}
 				//每次将更优结果保存到结果字符串中
 				if (dp[i][j] && (len + 1 > res.length())){
+					//substring方法名没有驼峰!!  不是subString!
 					res = s.substring(i , j + 1);
 				}
 			}
