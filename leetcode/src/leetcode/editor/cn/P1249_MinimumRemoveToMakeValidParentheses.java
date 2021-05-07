@@ -56,16 +56,26 @@ package leetcode.editor.cn;
 
 //移除无效的括号
 
+import java.util.Stack;
+
 public class P1249_MinimumRemoveToMakeValidParentheses{
 	 public static void main(String[] args) {
 	 	 Solution solution = new P1249_MinimumRemoveToMakeValidParentheses().new Solution();
+		 String validStr = solution.minRemoveToMakeValid("lee(t(c)o)de)");
+		 System.out.println(validStr);
 	 }
 
 	//leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String minRemoveToMakeValid(String s) {
+		Stack<Parentheses> stack = new Stack<>();
 		return null;
     }
+
+    class Parentheses{
+    	int index;
+    	String content;
+	}
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
