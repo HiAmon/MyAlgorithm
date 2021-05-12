@@ -25,6 +25,7 @@ public class SimpleErrorLog {
             String[] paths = filePath.split("\\\'");
             String filename = paths[paths.length - 1];
             Integer integer = map.computeIfPresent(filename + rowNum, (o1, o2) -> (o1.equals(o2) ? eNum + 1 : eNum));
+            //todo
         }
     }
 }
