@@ -109,12 +109,25 @@ public class OJTest {
 //        }
 //    }
 
+//    public static void main(String[] args) {
+//        Scanner in = new Scanner(System.in);
+//        while (in.hasNextLong()){
+//            long a = in.nextLong();
+//            long b = in.nextLong();
+//            System.out.println(a+b);
+//        }
+//    }
+
+
+    /**
+     * 无限流  是啥
+     * @param args
+     */
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        while (in.hasNextLong()){
-            long a = in.nextLong();
-            long b = in.nextLong();
-            System.out.println(a+b);
+        Stream<Integer> stream4 = Stream.iterate(0,(x) -> x+2);
+        Stream<Double> random = Stream.generate(() -> Math.random());
+        while (random.iterator().hasNext()){
+            System.out.println(random.iterator().next());
         }
     }
 

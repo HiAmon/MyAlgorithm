@@ -1,6 +1,5 @@
 package hw;
 
-import java.math.BigDecimal;
 import java.util.Scanner;
 
 /**
@@ -10,9 +9,15 @@ public class Hex2Dec {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        //十六进制转十进制
-        long l = Long.parseLong(in.next(), 16);
-        System.out.println(l);
-        in.close();
+        while (in.hasNextLine()){
+            //十六进制转十进制
+            String i = in.nextLine();
+            if ("".equals(i)){
+                break;
+            }
+            i = i.split("0x")[1];
+            long l = Long.parseLong(i, 16);
+            System.out.println(l);
+        }
     }
 }
