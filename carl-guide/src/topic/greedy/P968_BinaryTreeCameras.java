@@ -1,4 +1,4 @@
-package topic;
+package topic.greedy;
 
 //给定一个二叉树，我们在树的节点上安装摄像头。 
 //
@@ -38,30 +38,72 @@ package topic;
 public class P968_BinaryTreeCameras{
     public static void main(String[] args) {
         Solution solution = new P968_BinaryTreeCameras().new Solution();
-        
+//        TreeNode root = new TreeNode(0);
+//        solution.minCameraCover(root);
     }
 
-//leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
-    public int minCameraCover(TreeNode root) {
+    //leetcode submit region begin(Prohibit modification and deletion)
 
+    //Definition for a binary tree node.
+    private class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+
+    /**
+     * 贪心策略：
+     * 模拟题目要求分析规律可以发现：从叶子节点往上倒推一层，就是第一批摄像头，因为摄像头可以覆盖上下两层，所以放在"中间层"最划算
+     *
+     * 从叶子节点倒推
+     *
+     * 官方思路：
+     * 节点的三种状态：
+     * 0：无覆盖
+     * 1：覆盖
+     * 2：摄像头
+     * ---> 直到没有节点处于0状态
+     */
+    class Solution {
+        public int minCameraCover(TreeNode root) {
+            if (null == root){
+                return -1;
+            }
+
+            int res = 0;
+            if (traversal(root) == 0){
+                res++;
+            }
+            return res;
+        }
+
+        public int traversal(TreeNode node){
+            //遇到叶子节点
+            if (null == node){
+                return -1;
+            }
+
+            int left = traversal(node.left);
+            int right = traversal(node.right);
+
+            if (left == 0 || right == 0){
+                return 2;
+            }
+
+            if (left == 2 || right == 2){
+                return 1;
+            }
+
+            return 0;
+        }
+    }
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }

@@ -4,7 +4,7 @@
     <groupId>amon</groupId>
     <artifactId>my-algorithm</artifactId>
     <packaging>jar</packaging>
-    <name>my-algorithm-leetcode</name>
+    <name>my-algorithm-carl-guide</name>
     <url>http://maven.apache.org</url>
     <version>1.0.0</version>
     <properties>

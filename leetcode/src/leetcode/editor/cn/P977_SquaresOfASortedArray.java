@@ -43,14 +43,35 @@ package leetcode.editor.cn;
 
 public class P977_SquaresOfASortedArray{
     public static void main(String[] args) {
-        Solution solution = new SquaresOfASortedArray().new Solution();
+        Solution solution = new P977_SquaresOfASortedArray().new Solution();
         
     }
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] sortedSquares(int[] nums) {
+        int len = nums.length;
+        double arm = Math.ceil(len / 2.0);
+        int[] res = new int[len];
+        if (nums.length%2==0){
+            //偶数个数
+            int i = len/2;
+            int j = i+1;
+            for (i = 0; i < arm; i++) {
+                
+            }
+            
+        }else {
+            //奇数个数
+            int i = len/2;
+            int j = i;
 
+
+        }
+
+
+
+        return null;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

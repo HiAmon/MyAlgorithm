@@ -1,4 +1,4 @@
-package topic;
+package topic.hash;
 
 //编写一个算法来判断一个数 n 是不是快乐数。 
 //
@@ -50,8 +50,14 @@ public class P202_HappyNumber{
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    /**
+     * 用hash表判断sum值是否重复出现，如果重复说明是无限循环（可以用2尝试一次找规律）
+     *
+     * @param n
+     * @return
+     */
     public boolean isHappy(int n) {
-
+        return false;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

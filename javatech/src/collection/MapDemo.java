@@ -3,7 +3,7 @@ package collection;
 import com.google.gson.Gson;
 
 import java.util.*;
-import java.util.function.BiConsumer;
+//import java.util.function.BiConsumer;
 
 public class MapDemo {
 
@@ -47,14 +47,14 @@ public class MapDemo {
 
         Map<Integer,String> map = new HashMap<>(128);
         map.entrySet();
-        map.forEach(new BiConsumer<Integer, String>() {
-            @Override
-            public void accept(Integer i, String s) {
-                if (i==1){
-                    map.remove(i);
-                }
-            }
-        });
+//        map.forEach(new BiConsumer<Integer, String>() {
+//            @Override
+//            public void accept(Integer i, String s) {
+//                if (i==1){
+//                    map.remove(i);
+//                }
+//            }
+//        });
 
     }
 

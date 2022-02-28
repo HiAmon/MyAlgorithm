@@ -1,4 +1,4 @@
-package topic;
+package topic.greedy;
 
 //给定一个数组 prices ，其中 prices[i] 表示股票第 i 天的价格。 
 //
@@ -45,13 +45,28 @@ package topic;
 public class P122_BestTimeToBuyAndSellStockIi{
     public static void main(String[] args) {
         Solution solution = new P122_BestTimeToBuyAndSellStockIi().new Solution();
-        
+//        int[] prices = {7,1,5,3,6,4};
+        int[] prices = {1,2,3,4,5};
+        int maxProfit = solution.maxProfit(prices);
+        System.out.println(maxProfit);
     }
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int maxProfit(int[] prices) {
-
+        /**
+         * 贪心算法：
+         * 局部最优：所有能赚钱的差值的天
+         * 全局最优：在这些天进行交易
+         */
+        int sum = 0;
+        for (int i = 0; i < prices.length - 1; i++) {
+            int substraction = prices[i+1] - prices[i];
+            if (substraction > 0){
+                sum += substraction;
+            }
+        }
+        return sum;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

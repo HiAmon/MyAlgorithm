@@ -1,4 +1,4 @@
-package leetcode.editor.cn;
+package topic.array;
 
 //给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。 
 //
@@ -59,9 +59,8 @@ package leetcode.editor.cn;
 // Related Topics 数组 双指针 👍 1120 👎 0
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
-public class P27_RemoveElement{
+public class P27_RemoveElement {
     public static void main(String[] args) {
         Solution solution = new P27_RemoveElement().new Solution();
         int[] nums = {0,1,2,2,3,0,4,2};
@@ -86,12 +85,23 @@ class Solution {
             if ((nums[i]==val && nums[j]!= val)){
                 swap(nums,i++,j--);
             }
-            //todo 此处可以优化if条件
-            if (nums[i]!=val && nums[j] == val){
-                i++;
+            //todone 此处可以优化if条件
+//            if (nums[i]!=val && nums[j] == val){
+//                i++;
+//                j--;
+//            }
+//            if (nums[i]!=val && nums[j] != val){
+//                i++;
+//            }
+//            if (nums[i]==val && nums[j] == val){
+//                j--;
+//            }
+
+            //=======
+            if (nums[j] == val){
                 j--;
             }
-            if (nums[i]!=val && nums[j] != val){
+            if (nums[i]!=val){
                 i++;
             }
         }
@@ -144,7 +154,9 @@ class Solution {
             if (nums[fast] != val){//当slow,fast都不是目标值时，两人都往前走，直到两人一起遇到目标值；
                 // 当遇到第一个目标值的时候，fast就把slow留在原地，自己往前走，
                 // 当fast遇到非目标值的时候，fast就把自己这个非目标值赋给slow，然后fast,slow都往前走一步；
-                nums[slow++] = nums[fast];
+                nums[slow] = nums[fast];
+                slow++;
+                //可简写成：nums[slow++] = nums[fast];
             }
         }
         System.out.println(new Gson().toJson(nums));

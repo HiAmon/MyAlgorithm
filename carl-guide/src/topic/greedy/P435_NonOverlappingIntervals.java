@@ -1,4 +1,4 @@
-package topic;
+package topic.greedy;
 
 //给定一个区间的集合 intervals ，其中 intervals[i] = [starti, endi] 。返回 需要移除区间的最小数量，使剩余区间互不重
 //叠 。 
@@ -52,6 +52,9 @@ public class P435_NonOverlappingIntervals{
          * 贪心策略
          * 先按照 区间左端从左到右顺序，区间长度从短到长顺序
          * 一个指针指向当前覆盖范围的右端，如果下一个区间的右侧在这个指针左边（也就是重复了），就把这个区间干掉（res++）
+         *
+         *
+         * todo 应该是懒得写了，以后有兴趣可以写一下
          * @param intervals
          * @return
          */

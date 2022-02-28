@@ -1,4 +1,4 @@
-package leetcode.editor.cn;
+package topic.array;
 
 //给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否
 //则返回 -1。 
@@ -29,7 +29,7 @@ package leetcode.editor.cn;
 // 
 // Related Topics 数组 二分查找 👍 531 👎 0
 
-public class P704_BinarySearch{
+public class P704_BinarySearch {
     public static void main(String[] args) {
         Solution solution = new P704_BinarySearch().new Solution();
         int[] nums = {-1,0,3,5,9,12};
@@ -52,8 +52,22 @@ class Solution {
         if (target < nums[0] || target > nums[nums.length-1]){
             return -1;
         }
+        /**
+         * n:数组的元素个数
+         * n-1:数组末尾元素下标
+         *
+         * 则mid指针地址：
+         * mid=Math.ceil( (n-1)/2 );    //ceil:向上取整
+         * 或者
+         * mid = Math.floor(n/2);   //floor:向下取整
+         *
+         * 循环第一次时，mid = (low+high)/2
+         * 因为low取得是0，所以实际上用的是第一种——向上取整
+         *
+         * #cm 纸牌实验中，最简单的找中间指针位置的方法：如果是奇数张牌，取中间那个；如果是偶数张牌，去掉末尾牌取中间那个，然后取后面一张；
+         */
         while (low <= high){
-            int mid = low+(high-low)/2;//防溢出
+            int mid = low+(high-low) >> 1;//防溢出
             if (target == nums[mid]){
                 return mid;
             }else if (target < nums[mid]){

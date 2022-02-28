@@ -57,14 +57,22 @@ package leetcode.editor.cn;
 
 public class P26_RemoveDuplicatesFromSortedArray{
     public static void main(String[] args) {
-        Solution solution = new RemoveDuplicatesFromSortedArray().new Solution();
+        Solution solution = new P26_RemoveDuplicatesFromSortedArray().new Solution();
         
     }
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int removeDuplicates(int[] nums) {
+        /**
+         * 快慢指针
+         */
+        int slow = 0;
+        int fast = 0;
 
+
+
+        return -1;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

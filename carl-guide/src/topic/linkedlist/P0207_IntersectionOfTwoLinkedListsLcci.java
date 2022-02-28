@@ -1,4 +1,4 @@
-package topic;
+package topic.linkedlist;
 
 //给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表没有交点，返回 null 。 
 //
@@ -70,27 +70,78 @@ package topic;
 // 进阶：你能否设计一个时间复杂度 O(n) 、仅用 O(1) 内存的解决方案？ 
 // Related Topics 哈希表 链表 双指针 👍 153 👎 0
 
-public class P面试题 02.07_IntersectionOfTwoLinkedListsLcci{
+public class P0207_IntersectionOfTwoLinkedListsLcci{
     public static void main(String[] args) {
-        Solution solution = new P面试题 02.07_IntersectionOfTwoLinkedListsLcci().new Solution();
-        
+        Solution solution = new P0207_IntersectionOfTwoLinkedListsLcci().new Solution();
+        ListNode headA = new ListNode(1);
+        ListNode cur = headA;
+        for (int i = 2; i <= 3; i++) {
+            cur.next = new ListNode(i);
+            cur = cur.next;
+        }
+        ListNode headB = new ListNode(1);
+        ListNode curB = headB;
+        for (int i = 2; i <= 5; i++) {
+            curB.next = new ListNode(i);
+            curB = curB.next;
+        }
+
+        ListNode same = new ListNode(111);
+        cur.next = same;
+        curB.next = same;
+        ListNode curSame = same;
+        for (int i = 2; i <= 10; i++) {
+            curSame.next = new ListNode(i);
+            curSame = curSame.next;
+        }
+        solution.getIntersectionNode(headA,headB);
     }
 
 //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
- */
 public class Solution {
+    /**
+     * 依旧是官方思路，还是得先遍历到结尾，然后再倒推
+     * 求出两个链表的长度和差值，然后就可以"对齐"，从对齐的地方开始一起移动，直到两个指针碰撞
+     * @param headA
+     * @param headB
+     * @return
+     */
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        
+        int lenA = 0;
+        int lenB = 0;
+        ListNode rulerA = headA;
+        ListNode rulerB = headB;
+        while (null != rulerA.next){
+            lenA++;
+            rulerA = rulerA.next;
+        }
+        while (null != rulerB.next){
+            lenB++;
+            rulerB = rulerB.next;
+        }
+
+        ListNode a = headA;
+        ListNode b = headB;
+        int sub = lenA - lenB;
+        int abs = Math.abs(sub);
+        while (abs > 0){
+            abs--;
+            if (sub > 0){
+                a = a.next;
+            }else if (sub < 0){
+                b = b.next;
+            }
+        }
+
+        while (null != a.next && null != b.next){
+            if (a.next == b.next){
+                break;
+            }
+            a = a.next;
+            b = b.next;
+        }
+        System.out.println(a.next.val);
+        return a.next;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -5,7 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-public class ProxyDemo {
+public class JDKProxyDemo {
     /**
      * ▲ 最终的实际调用方
      * @param args

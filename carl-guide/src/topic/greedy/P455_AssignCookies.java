@@ -1,4 +1,4 @@
-package topic;
+package topic.greedy;
 
 //假设你是一位很棒的家长，想要给你的孩子们一些小饼干。但是，每个孩子最多只能给一块饼干。 
 //
@@ -39,16 +39,40 @@ package topic;
 // 
 // Related Topics 贪心 数组 排序 👍 436 👎 0
 
+import java.util.Arrays;
+
 public class P455_AssignCookies{
     public static void main(String[] args) {
         Solution solution = new P455_AssignCookies().new Solution();
-        
+        int[] g = {1,3,5,19,20};
+        int[] s = {1,2,7,10,11};
+        int res = solution.findContentChildren(g, s);
+        System.out.println(res);
+
     }
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int findContentChildren(int[] g, int[] s) {
+        if (g.length < 1 || s.length < 1){
+            return -1;
+        }
+        Arrays.sort(g);
+        Arrays.sort(s);
 
+        /** 如果胃口数组的最小值大于饼干数组的最大值，那么一个也满足不了 */
+        if (g[0] > s[s.length -1 ]){
+            return -1;
+        }
+        int i = 0;  //遍历胃口 g
+        int j = 0;  //遍历饼干 s
+        while ((j < s.length) && (i < g.length) ){
+            if (s[j] >= g[i]){
+                i++;
+            }
+            j++;
+        }
+        return i;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

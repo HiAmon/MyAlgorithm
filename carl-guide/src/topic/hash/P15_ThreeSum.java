@@ -1,4 +1,4 @@
-package topic;
+package topic.hash;
 
 //给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有和为 0 且不重
 //复的三元组。 
@@ -38,16 +38,30 @@ package topic;
 // 
 // Related Topics 数组 双指针 排序 👍 4298 👎 0
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class P15_ThreeSum{
     public static void main(String[] args) {
         Solution solution = new P15_ThreeSum().new Solution();
         
     }
 
+
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    /**
+     * todo
+     * @param nums
+     * @return
+     */
     public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
 
+
+
+
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

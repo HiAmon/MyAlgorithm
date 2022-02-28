@@ -1,4 +1,4 @@
-package topic;
+package topic.greedy;
 
 //n 个孩子站成一排。给你一个整数数组 ratings 表示每个孩子的评分。 
 //
@@ -50,6 +50,8 @@ public class P135_Candy{
 class Solution {
     public int candy(int[] ratings) {
 
+
+        return 0;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -1,4 +1,4 @@
-package topic;
+package topic.linkedlist;
 
 //给定一个链表的头节点 head ，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。 
 //
@@ -63,23 +63,59 @@ public class P142_LinkedListCycleIi{
         
     }
 
-//leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for singly-linked list.
- * class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
- */
-public class Solution {
-    public ListNode detectCycle(ListNode head) {
-        
+    //leetcode submit region begin(Prohibit modification and deletion)
+
+    // Definition for singly-linked list.
+    class ListNode {
+     int val;
+     ListNode next;
+     ListNode(int x) {
+         val = x;
+         next = null;
+     }
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+
+
+    /**
+     * 官方思路(理解见rm草稿 -> 一个关于速度的坐标图)
+     *
+     *
+     */
+    public class Solution {
+        /**
+         * 画图可以知道，快慢指针速度为1/2，如果同时从环形入口节点出发，一定会回到入口节点相遇
+         * 但是真实的快慢指针会从头节点出发，
+         * @param head
+         * @return
+         */
+
+
+        /**
+         * 官方代码
+         * todo 回头自己实现一遍
+         * @param head
+         * @return
+         */
+        public ListNode detectCycle(ListNode head) {
+            ListNode slow = head;
+            ListNode fast = head;
+            while (fast != null && fast.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
+                if (slow == fast) {// 有环
+                    ListNode index1 = fast;
+                    ListNode index2 = head;
+                    // 两个指针，从头结点和相遇结点，各走一步，直到相遇，相遇点即为环入口
+                    while (index1 != index2) {
+                        index1 = index1.next;
+                        index2 = index2.next;
+                    }
+                    return index1;
+                }
+            }
+            return null;
+        }
+    }
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }

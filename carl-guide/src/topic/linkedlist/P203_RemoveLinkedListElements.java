@@ -36,27 +36,64 @@ package topic.linkedlist;
 //// Related Topics 递归 链表 👍 778 👎 0
 //
 
+import java.util.Collections;
+import topic.linkedlist.ListNode;
 public class P203_RemoveLinkedListElements{
     public static void main(String[] args) {
         Solution solution = new P203_RemoveLinkedListElements().new Solution();
-        
+        int[] nums = {1,2,6,3,4,5,6};
+        ListNode head = new ListNode(nums[0]);
+        ListNode pre = head;
+        //头插法
+
+        for (int i = 1; i < nums.length; i++) {
+            ListNode cur = new ListNode(nums[i]);
+            pre.next = cur;
+            pre = cur;
+        }
+        ListNode pp = head;
+        while (null != pp.next){
+            System.out.println(pp.val);
+            pp = pp.next;
+        }
+        System.out.println(pp.val);
+
+        System.out.println("-----------");
+
+        ListNode newhead = solution.removeElements(head, 6);
+        ListNode qq = newhead;
+        while (null != qq.next){
+            System.out.println(qq.val);
+            qq = qq.next;
+        }
+        System.out.println(qq.val);
     }
 
 //leetcode submit region begin(Prohibit modification and deletion)
 
-//Definition for singly-linked list.
-
-public class ListNode {
-    int val;
-    ListNode next;
-    ListNode() {}
-    ListNode(int val) { this.val = val; }
-    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-}
 
 class Solution {
+    /**
+     * 官方思路，新建一个虚拟头节点，这样就能统一处理头节点和非头节点了
+     * @param head
+     * @param val
+     * @return
+     */
     public ListNode removeElements(ListNode head, int val) {
-        return null;
+
+        ListNode vhead = new ListNode(-1,head);     //虚拟头节点
+        ListNode pre = vhead;
+        ListNode curr = head;
+
+        while(curr != null){
+            if (curr.val == val){
+                pre.next = curr.next;
+            }else {
+                pre = curr;
+            }
+            curr = curr.next;
+        }
+        return vhead.next;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

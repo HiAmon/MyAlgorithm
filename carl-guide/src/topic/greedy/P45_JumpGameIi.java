@@ -1,4 +1,4 @@
-package topic;
+package topic.greedy;
 
 //给你一个非负整数数组 nums ，你最初位于数组的第一个位置。 
 //
@@ -36,6 +36,8 @@ package topic;
 // 
 // Related Topics 贪心 数组 动态规划 👍 1394 👎 0
 
+import java.util.Arrays;
+
 public class P45_JumpGameIi{
     public static void main(String[] args) {
         Solution solution = new P45_JumpGameIi().new Solution();
@@ -44,8 +46,22 @@ public class P45_JumpGameIi{
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    /**
+     * 参照官方思路
+     * 根据最大覆盖范围的重合部分来确定
+     * @param nums
+     * @return
+     */
     public int jump(int[] nums) {
 
+        for (int i = 0; i < nums.length; i++) {
+            int range = nums[i];
+            int[] copy = Arrays.copyOfRange(nums, i, range);
+            Arrays.sort(copy);
+            int big = copy[copy.length - 1];
+        }
+
+        return 0;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

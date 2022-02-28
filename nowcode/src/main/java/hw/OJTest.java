@@ -83,18 +83,18 @@ public class OJTest {
 //        System.out.println(collect);
 //    }
 
-//    public static void main(String[] args) {
-//        Scanner in = new Scanner(System.in);
-//        while (in.hasNextLine()){
-//            String s = in.nextLine();
-//            if ("".equals(s)){
-//                break;
-//            }
-//            String[] arr = s.split(" ");
-//            String collect = Arrays.stream(arr).sorted(String::compareTo).collect(Collectors.joining(" "));
-//            System.out.println(collect);
-//        }
-//    }
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while (in.hasNextLine()){
+            String s = in.nextLine();
+            if ("".equals(s)){
+                break;
+            }
+            String[] arr = s.split(" ");
+            String collect = Arrays.stream(arr).sorted(String::compareTo).collect(Collectors.joining(" "));
+            System.out.println(collect);
+        }
+    }
 
 //    public static void main(String[] args) {
 //        Scanner in = new Scanner(System.in);
@@ -119,16 +119,16 @@ public class OJTest {
 //    }
 
 
-    /**
-     * 无限流  是啥
-     * @param args
-     */
-    public static void main(String[] args) {
-        Stream<Integer> stream4 = Stream.iterate(0,(x) -> x+2);
-        Stream<Double> random = Stream.generate(() -> Math.random());
-        while (random.iterator().hasNext()){
-            System.out.println(random.iterator().next());
-        }
-    }
+//    /**
+//     * 无限流  是啥
+//     * @param args
+//     */
+//    public static void main(String[] args) {
+//        Stream<Integer> stream4 = Stream.iterate(0,(x) -> x+2);
+//        Stream<Double> random = Stream.generate(() -> Math.random());
+//        while (random.iterator().hasNext()){
+//            System.out.println(random.iterator().next());
+//        }
+//    }
 
 }

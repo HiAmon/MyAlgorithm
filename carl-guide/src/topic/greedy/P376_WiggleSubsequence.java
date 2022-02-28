@@ -1,4 +1,4 @@
-package topic;
+package topic.greedy;
 
 //如果连续数字之间的差严格地在正数和负数之间交替，则数字序列称为 摆动序列 。第一个差（如果存在的话）可能是正数或负数。仅有一个元素或者含两个不等元素的序列也
 //视作摆动序列。 
@@ -58,13 +58,45 @@ package topic;
 public class P376_WiggleSubsequence{
     public static void main(String[] args) {
         Solution solution = new P376_WiggleSubsequence().new Solution();
-        
+        int[] nums = {1,2,3,4,5,6,7,8,9};
+        int l = solution.wiggleMaxLength(nums);
+        System.out.println(l);
     }
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int wiggleMaxLength(int[] nums) {
+        /**
+         * 贪心算法
+         * 局部最优：当前元素是左右两侧的峰值or谷值（即不在半山腰上or悬崖上）
+         * 全局最优：所有元素都是局部的峰值or谷值
+         */
+        int len = nums.length;
+        if (len < 3){
+            if (len < 1){
+                return -1;
+            }else if (len == 1){
+                return 1;
+            }else if (len == 2){
+                if (nums[0] == nums[1]){
+                    return 1;
+                }else {
+                    return 2;
+                }
+            }
+        }
 
+        int count = 2;//头尾元素
+        //有3个及以上元素（即可以构成峰值or谷值）
+        for (int i = 1; i < nums.length - 1; i++) {
+            //从第二个元素到倒数第二个元素
+            if ((nums[i] - nums[i-1])*(nums[i+1]-nums[i]) < 0){     //这一句优化一下，否则容易溢出
+                count++;
+            }
+        }
+
+
+        return count;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

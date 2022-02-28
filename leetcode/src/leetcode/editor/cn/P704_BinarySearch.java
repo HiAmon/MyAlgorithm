@@ -31,14 +31,38 @@ package leetcode.editor.cn;
 
 public class P704_BinarySearch{
     public static void main(String[] args) {
-        Solution solution = new BinarySearch().new Solution();
-        
+        Solution solution = new P704_BinarySearch().new Solution();
+        int[] nums = {-1,0,3,5,9,12};
+        int target = 12;
+        int search = solution.search(nums, target);
+        System.out.println(search);
     }
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int search(int[] nums, int target) {
-
+        /**
+         * 左闭右闭写法，此时while循环是low<=high，而不是low<high，左右指针相等是有意义的，
+         * 因为截半的时候没有保留mid本身，所有保留下来的区间是全部有意义的
+         *
+         * 参考：https://gitee.com/programmercarl/leetcode-master/blob/master/problems/0704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.md#%E4%BA%8C%E5%88%86%E6%B3%95%E7%AC%AC%E4%B8%80%E7%A7%8D%E5%86%99%E6%B3%95
+         */
+        int low = 0;
+        int high = nums.length - 1; //细心一点！！
+        if (target < nums[0] || target > nums[nums.length-1]){
+            return -1;
+        }
+        while (low <= high){
+            int mid = low+(high-low)/2;//防溢出
+            if (target == nums[mid]){
+                return mid;
+            }else if (target < nums[mid]){
+                high = mid-1;
+            } else {
+                low = mid+1;
+            }
+        }
+        return -1;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
