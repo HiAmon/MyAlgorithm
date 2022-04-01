@@ -55,6 +55,8 @@ public class P53_MaximumSubarray{
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
+    //此方法达咩！！！看下面的解法
     public int maxSubArray1(int[] nums) {
         /**
          * 贪心算法：
@@ -96,6 +98,8 @@ class Solution {
     /**
      * 官方解法，不需要双指针啦，一个变量就可以啦
      * 更优化更简洁了
+     *
+     * 这个程序啥也没写待注释啊喂！！  todo
      * @param nums
      * @return
      */

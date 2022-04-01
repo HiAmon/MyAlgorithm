@@ -1,14 +1,29 @@
 package temp;
 
-import java.io.File;
+import java.io.*;
+import java.nio.Buffer;
+import java.nio.channels.Selector;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-public class BookmarkDemo {
+//IO怎么读文件呀～
+public class BookmarkDemo extends HashMap implements Map{
     public static void main(String[] args) {
-        File edge = new File("/usr/wohamon/Desktop/Edge-Bookmark.html");
-        File chrome = new File("/usr/wohamon/Desktop/Chrome-Bookmark.html");
+        try {
+            FileOutputStream stream = new FileOutputStream("/usr/wohamon/Desktop/techlinks.html");
+            FileInputStream inputStream = new FileInputStream("/usr/wohamon/Desktop/techlinks.html");
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
 
-
-
-
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+    @Override
+    public void putAll(Map m) {
+        super.putAll(m);
+    }
+
+
 }

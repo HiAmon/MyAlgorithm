@@ -54,6 +54,7 @@ package topic.binaryTree;
 // Related Topics 栈 树 深度优先搜索 二叉树 👍 732 👎 0
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
@@ -156,7 +157,74 @@ class Solution {
     }
 
 
+    /**
+     * =====后序遍历======
+     */
+    public List<Integer> postOrderTraversal(TreeNode root){
+        List<Integer> rs = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur = root;
 
+        /**
+         * 只要当前节点右孩子，就把当前节点进栈，因为输出是左右中，所以进栈顺序应该是中右左
+         *
+         */
+        stack.push(root);
+
+        while (!stack.isEmpty()){
+            if (null != cur.right){
+                stack.push(cur.right);
+            }
+            if (null != cur.left){
+                stack.push(cur.left);
+            }
+            //。。。
+        }
+        return rs;//todo 见官方代码的奇妙解法
+    }
+
+    /**
+     * 官方思路
+     * 后序遍历--> 左右中，反过来就是中右左
+     * 之前前序遍历的输出是中左右，那就把前序遍历的左右顺序颠倒一下，然后把输出数组翻转
+     *
+     * #cm 这是什么神仙思路啊我靠。。这nm是人能想到的吗？？
+     */
+    public List<Integer> postOrderTraversal2(TreeNode root){
+        /** 省略判空*/
+
+        TreeNode cur;
+        List<Integer> rs = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+            cur = stack.pop();
+            rs.add(cur.val);
+
+            if (null != cur.left){
+                stack.push(cur.left);
+            }
+
+            if (null != cur.right){
+                stack.push(cur.right);
+            }
+        }
+        Collections.reverse(rs);
+        return rs;
+    }
+
+    /**
+     * 参考后序遍历的方法二
+     *
+     * 那不如把原树做翻转二叉树，然后调用前序遍历，再翻转res[]
+     * @param root
+     * @return
+     */
+    public List<Integer> postOrderTraversal3(TreeNode root){
+        //todo 先翻转二叉树
+        return postOrderTraversal2(root);
+    }
     ///===================自己代码⬆⬆⬆⬆=================
 
 
