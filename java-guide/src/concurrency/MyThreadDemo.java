@@ -38,6 +38,9 @@ public class MyThreadDemo {
             }
         };
 
+        /**
+         * Callable和Runnable的区别，可以返回值，可以抛异常，但是不能传入Thread构造器，只能用线程池来调用
+         */
         Callable<MySynchronizeDemo> callable = new Callable<MySynchronizeDemo>() {
             @Override
             public MySynchronizeDemo call() throws Exception {
@@ -49,6 +52,7 @@ public class MyThreadDemo {
         new Thread(task2).start();
         ExecutorService service = Executors.newCachedThreadPool();
         service.submit(callable);
+        service.execute(task1);
     }
 }
 /**
