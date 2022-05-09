@@ -1,8 +1,8 @@
 package concurrency;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
+import java.util.concurrent.*;
 
 public class MyThreadDemo {
 
@@ -51,8 +51,14 @@ public class MyThreadDemo {
         new Thread(task1).start();
         new Thread(task2).start();
         ExecutorService service = Executors.newCachedThreadPool();
-        service.submit(callable);
+        Executors.newFixedThreadPool(5, Executors.defaultThreadFactory());
+//        Executors.newScheduledThreadPool();
+        Future<MySynchronizeDemo> future = service.submit(callable);
         service.execute(task1);
+
+        Thread thread = new ThreadFactoryBuilder().build().newThread(task1);
+        thread.start();
+
     }
 }
 /**

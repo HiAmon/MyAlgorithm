@@ -1,2 +1,10 @@
-package myjava.basis;public class MyTest {
+package myjava.basis;
+
+
+public class MyTest {
+
+    @MyAnnotationDemo
+    public void test(){
+
+    }
 }

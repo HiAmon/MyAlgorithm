@@ -8,6 +8,11 @@
 
     </bean>
 
-
+    <bean id="beanA" class="com.amon.springbootdemo.cycledi.BeanA" scope="prototype">
+        <property name="beanB" ref="beanB"></property>
+    </bean>
+    <bean id="beanB" class="com.amon.springbootdemo.cycledi.BeanB">
+        <property name="beanA" ref="beanA"></property>
+    </bean>
 
 </beans>

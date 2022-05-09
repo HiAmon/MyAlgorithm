@@ -13,6 +13,10 @@ public class JDKProxyDemo {
     public static void main(String[] args) {
         //InvocationHandler 调用处理程序
         Google google = new Google();
+
+        google.getClass();
+        Class goz = Google.class;
+
         /**
          * Proxy类提供的创建代理对象的方法： ⬇⬇⬇
          */
