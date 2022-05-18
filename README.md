@@ -22,8 +22,10 @@
 
 ### 服务器
 - Tomcat&Nginx：https://www.processon.com/view/link/625d94f3260d716f7d1fe475
+- Nginx [#todo 待整理上传]：https://www.processon.com/view/link/62850d405653bb070edc2b63
 
 ### 基础学科知识梳理
-- 信息安全加密：https://www.processon.com/view/link/62850baf5653bb070edc2744
-- 数据库概论：https://www.processon.com/view/link/62850bc45653bb070edc278c
 - 操作系统原理：https://www.processon.com/view/link/625d9599260d716f7d1fe4a9
+- 数据库概论：https://www.processon.com/view/link/62850bc45653bb070edc278c
+- 信息安全加密：https://www.processon.com/view/link/62850baf5653bb070edc2744
+- 计算机网络 [#todo 待完善]：https://www.processon.com/view/link/62850d0b0791292648694328
