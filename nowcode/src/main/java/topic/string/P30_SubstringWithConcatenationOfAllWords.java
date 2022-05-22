@@ -43,20 +43,96 @@ package topic.string;
 // 
 // Related Topics 哈希表 字符串 滑动窗口 👍 657 👎 0
 
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class P30_SubstringWithConcatenationOfAllWords{
     public static void main(String[] args) {
         Solution solution = new P30_SubstringWithConcatenationOfAllWords().new Solution();
-        
+//        String[] strings = new String[]{"word","good","best","word"};
+        String[] words = new String[]{"a","a"};
+//        List<Integer> list = solution.findSubstring("wordgoodgoodgoodbestword", strings);
+        List<Integer> list = solution.findSubstring("a", words);
+        System.out.println(new Gson().toJson(list));
     }
-
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public List<Integer> findSubstring(String s, String[] words) {
+        //录入词汇表，数量为1
+        HashMap<String,Integer> map = new HashMap<>();
+        for (String word : words) {
+            if (null == map.get(word)){
+                map.put(word, 1);
+            }else {
+                map.put(word, map.get(word) + 1);
+            }
+        }
+        HashMap defaultMap = (HashMap) map.clone();
+        List<Integer> result = new ArrayList<>();
 
+        //拿到词汇长度
+        int len = words[0].length();
 
-        return null;
+        char[] chars = s.toCharArray();
+        String substring;
+        int i = 0;
+        while (i < chars.length-len && (s.length()-i < len*words.length)){ //
+            substring = new String(chars, i, len);//0,1,2
+            if (map.containsKey(substring)){
+                //如果map中匹配上，那就往后匹配
+                map.put(substring, map.get(substring)-1);//
+                //第二个单词[i+len*1,+3
+                int loopNum = 1;
+//                while (i+len*(loopNum+1) < s.length()){     //这里
+                while (loopNum < words.length && (i+len*(loopNum+1) <= s.length())){
+//                    int rightOffset = i+len*(loopNum+1);
+                    String curSubString = new String(chars,i+len*loopNum,len);//3,4,5
+
+                    if (map.containsKey(curSubString) && map.get(curSubString) > 0){
+                        map.put(curSubString,map.get(curSubString)-1);
+                        loopNum++;
+                    }else {
+                        //如果不存在，那么这次匹配失败，从下一个s的起始点开始
+                        map = (HashMap<String, Integer>) defaultMap.clone();
+                        break;
+                    }
+
+                }
+                boolean zeroFlag = true;
+                for (Integer value : map.values()) {
+                    if (value != 0){
+                        zeroFlag = false;
+                        break;
+                    }
+                }
+                if (zeroFlag){
+                    result.add(i);
+//                    i += len * words.length;//barfoofoobarthefoobarman <-> "bar","foo","the" 这样的特殊情况，一次只能跳一个单词
+                    map = (HashMap<String, Integer>) defaultMap.clone();
+                    i += len;
+                    continue;
+                }
+            }
+            i++;
+        }
+        /**
+         * 如果s中的单词数量和words的单词数量一样长，那就直接比较吧
+         * s:a
+         * words:a,a
+         * []
+         * ---
+         * s:a
+         * words:a
+         * [0]
+         */
+        if (s.equals(words[0]) && words.length*words[0].length() <= s.length()){
+            result.add(0);
+            return result;
+        }
+        return result;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

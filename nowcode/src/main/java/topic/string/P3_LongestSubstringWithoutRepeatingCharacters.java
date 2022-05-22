@@ -39,18 +39,60 @@ package topic.string;
 // 
 // Related Topics 哈希表 字符串 滑动窗口 👍 7553 👎 0
 
+//✅
 public class P3_LongestSubstringWithoutRepeatingCharacters{
     public static void main(String[] args) {
         Solution solution = new P3_LongestSubstringWithoutRepeatingCharacters().new Solution();
-        
+//        String str = "pwwkew";
+        String str = "abcabcbbdoab";
+        System.out.println(solution.lengthOfLongestSubstring(str));
+//        char[] chars = str.toCharArray();
+//        for (int i = 0; i < chars.length; i++) {
+//            System.out.println(chars[i]);
+//        }
+//        byte[] bytes = str.getBytes();
+//        for (int i = 0; i < bytes.length; i++) {
+//            System.out.println(bytes[i]);
+//        }
     }
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    /**
+     * 对于 「找字符串的子串」问题，通常都是滑动窗口【因为子串内部是不能断裂而是连续的，注意区分「子串」和「子序列」！！】
+     * @param s
+     * @return
+     */
     public int lengthOfLongestSubstring(String s) {
 
+        if (null == s || "".equals(s)){
+            return 0;
+        }
 
-        return 0;
+        Solution solution = new Solution();
+        int maxlen = 1;
+        int i = 0;
+        int j = 1;
+        char[] chars = s.toCharArray();
+        while (j < chars.length){
+            int con = solution.contains(chars, i, j, chars[j]);
+            if (con >= 0){
+                i = con+1;
+            }else {
+                j++;
+            }
+            maxlen = Math.max(maxlen, j-i);
+        }
+        return maxlen;
+    }
+
+    public int contains(char[] chars, int begin, int end, char target){
+        for (int i = begin; i < end; i++) {
+            if (chars[i] == target){
+                return i;
+            }
+        }
+        return -1;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

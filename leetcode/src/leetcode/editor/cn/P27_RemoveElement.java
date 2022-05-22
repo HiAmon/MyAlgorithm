@@ -83,15 +83,15 @@ class Solution {
         int i = 0;
         int j = nums.length-1;
         while(i<j){
-            if ((nums[i]==val && nums[j]!= val)){
+            if ((nums[i]==val && nums[j]!= val)){    //i命中且j不命中时
                 swap(nums,i++,j--);
             }
             //todo 此处可以优化if条件
-            if (nums[i]!=val && nums[j] == val){
+            if (nums[i]!=val && nums[j] == val){    //i不命中且j命中时
                 i++;
                 j--;
             }
-            if (nums[i]!=val && nums[j] != val){
+            if (nums[i]!=val && nums[j] != val){    //i，j都不命中时
                 i++;
             }
         }

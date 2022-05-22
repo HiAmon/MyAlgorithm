@@ -12,15 +12,15 @@ import java.util.stream.Stream;
  * long的取值范围：负922亿亿到正922亿亿，2的63次方，19位的十进制
  */
 public class OJTest {
-//    public static void main(String[] args) {
-//        Scanner in = new Scanner(System.in);
-//        while (in.hasNextInt()){
-//            int a  = in.nextInt();
-//            int b  = in.nextInt();
-//            System.out.println(a+b);
-//        }
-//        in.close();
-//    }
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while (in.hasNextInt()){
+            int a  = in.nextInt();
+            int b  = in.nextInt();
+            System.out.println(a+b);
+        }
+        in.close();
+    }
 
 //    public static void main(String[] args) {
 //        Scanner in = new Scanner(System.in);
@@ -83,18 +83,18 @@ public class OJTest {
 //        System.out.println(collect);
 //    }
 
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        while (in.hasNextLine()){
-            String s = in.nextLine();
-            if ("".equals(s)){
-                break;
-            }
-            String[] arr = s.split(" ");
-            String collect = Arrays.stream(arr).sorted(String::compareTo).collect(Collectors.joining(" "));
-            System.out.println(collect);
-        }
-    }
+//    public static void main(String[] args) {
+//        Scanner in = new Scanner(System.in);
+//        while (in.hasNextLine()){
+//            String s = in.nextLine();
+//            if ("".equals(s)){
+//                break;
+//            }
+//            String[] arr = s.split(" ");
+//            String collect = Arrays.stream(arr).sorted(String::compareTo).collect(Collectors.joining(" "));
+//            System.out.println(collect);
+//        }
+//    }
 
 //    public static void main(String[] args) {
 //        Scanner in = new Scanner(System.in);
