@@ -54,12 +54,23 @@ import java.util.Stack;
  * 其中迭代又分为DFS和BFS，
  * DFS的遍历顺序和递归很像使用栈
  * BFS就是层序遍历，使用队列
+ *
+ * @https://programmercarl.com/0226.%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91.html#%E9%80%92%E5%BD%92%E6%B3%95
  */
 public class P226_InvertBinaryTree{
     public static void main(String[] args) {
         Solution solution = new P226_InvertBinaryTree().new Solution();
-        TreeNode root = new TreeNode(0);
-        solution.invertTree(root);
+        TreeNode root = new TreeNode(4);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(7);
+        root.left.left = new TreeNode(1);
+        root.left.right = new TreeNode(3);
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(9);
+//        solution.invertTree(root);
+        solution.invertTree2(root);
+//        solution.invertTree3(root);
+        System.out.println("sdsd");
     }
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -99,16 +110,19 @@ class Solution {
      * @return
      */
     public TreeNode invertTree2(TreeNode root){
-        Deque<TreeNode> stack = new LinkedList<>();      //pop() 弹出时如果栈为空会抛异常，而poll() 只会返回空
-        stack.push(root);
-        while (null != root || !stack.isEmpty()){
-            TreeNode cur = stack.pop();
+        Deque<TreeNode> deque = new LinkedList<>();      //pop() 弹出时如果栈为空会抛异常，而poll() 只会返回空
+        deque.push(root);
+        while (null != root || !deque.isEmpty()){
+            if (deque.size() <= 0){
+                break;
+            }
+            TreeNode cur = deque.poll();
             swapChildren(cur);
             if (null != cur.left){
-                stack.push(cur.left);
+                deque.push(cur.left);
             }
             if (null != cur.right){
-                stack.push(cur.right);
+                deque.push(cur.right);
             }
         }
         return root;

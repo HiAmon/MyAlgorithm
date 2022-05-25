@@ -64,7 +64,8 @@ public class P105_ConstructBinaryTreeFromPreorderAndInorderTraversal{
 
             this.preorder = preorder;
             this.inorder = inorder;
-            return traverse(0, len - 1, 0, len - 1);
+            TreeNode root = traverse(0, len - 1, 0, len - 1);
+            return root;
         }
 
         /**
@@ -73,62 +74,35 @@ public class P105_ConstructBinaryTreeFromPreorderAndInorderTraversal{
          * @param preRight 当前处理的右区间
          * @param inLeft 当前处理的左区间 inorder中中对应下标
          * @param inRight 当前处理的右区间
+         *
+         * 思路见1052.png
+         * @https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/solution/cong-qian-xu-yu-zhong-xu-bian-li-xu-lie-gou-zao-9/
          * @return
          */
         public TreeNode traverse(int preLeft, int preRight, int inLeft, int inRight ){
-//            //当前区间只有一个元素
-//            if (inRight-inLeft == 1){
-//                return new TreeNode(inorder[inLeft]);
-//            }
-//
-//            //走到叶子节点
-//            if (inRight-inLeft < 1){
-//                return null;
-//            }
-//
-//            TreeNode curParent = new TreeNode(preorder[preLeft]);
-//
-//            int curIn = inMap.get(curParent.val);
-//
-//            curParent.left = traverse(
-//                    inLeft,//0
-//                    curIn,//1
-//                    preLeft,//0
-//                    preLeft + (curIn - inLeft)//0+1-0=1
-//            );
-//
-//            curParent.right = traverse( curIn + 1,
-//                    inRight,
-//                     preLeft + (curIn - inLeft),
-//                    preRight - 1
-//            );
-//            return curParent;
-
-
-
-            if (inLeft > inRight || preLeft > preRight) return null;
-
-            // val 为前序遍历第一个的值，也即是根节点的值
-            // idx 为根据根节点的值来找中序遍历的下标
-            int idx = inLeft, val = preorder[preLeft];
-            TreeNode curParent = new TreeNode(val);
-            for (int i = inLeft; i <= inRight; i++) {
-                if (inorder[i] == val) {
-                    idx = i;
-                    break;
-                }
+            //单层递归退出条件，区间为空
+            if (inLeft > inRight || preLeft > preRight) {
+                return null;
             }
 
-            // 根据 idx 来递归找左右子树
+            // val 为前序遍历第一个的值，也即是根节点的值
+            int val = preorder[preLeft];
+            TreeNode curParent = new TreeNode(val);
+
+            // curIn 为根据根节点的值来找中序遍历的下标
+            int curIn = inMap.get(val);
+
+            // 根据 curIn 来递归找左右子树
             curParent.left = traverse(
                     preLeft + 1,
-                    preLeft + (idx - inLeft),
-                     inLeft,
-                    idx - 1);
+                    preLeft + (curIn - inLeft),
+                    inLeft,
+                    curIn - 1);
+
             curParent.right = traverse(
-                    preLeft + (idx - inLeft) + 1,
+                    preLeft + (curIn - inLeft) + 1,
                     preRight,
-                     idx + 1,
+                     curIn + 1,
                     inRight);
             return curParent;
         }
