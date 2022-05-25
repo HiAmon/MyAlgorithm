@@ -44,26 +44,78 @@ package topic.hashtable;
 // 
 // Related Topics 设计 线段树 有序集合 👍 123 👎 0
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+
 public class P729_MyCalendarI{
     public static void main(String[] args) {
-
+        MyCalendar myCalendar = new MyCalendar();
+        boolean book = myCalendar.book(10, 20);// return True
+        boolean book1 = myCalendar.book(15, 25);// return False ，这个日程安排不能添加到日历中，因为时间 15 已经被另一个日程安排预订了。
+        boolean book2 = myCalendar.book(20, 30);// return True ，这个日程安排可以添加到日历中，因为第一个日程安排预订的每个时间都小于 20 ，且不包含时间 20 。
+        System.out.println(myCalendar);
     }
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class MyCalendar {
+static class MyCalendar {
+
+    List<Pair> pairList;
 
     public MyCalendar() {
-        /**
-         * 用一个map来存放能放下的预定，参考xx_III，
-         * map.put(begin,1);
-         * map.put(end,-1);
-         * 等...
-         */
+        pairList = new ArrayList<>();
+    }
+
+    public class Pair{
+        private int min;
+        private int max;
+
+        public int getMin() {
+            return min;
+        }
+
+        public int getMax() {
+            return max;
+        }
+
+
+        public Pair(int min, int max) {
+            this.min = min;
+            this.max = max;
+        }
     }
     
     public boolean book(int start, int end) {
-        return false;
+        if (pairList.size() == 0){
+            pairList.add(new Pair(start,end));
+            return true;
+        }
+        //添加元素可以在foreach中添加(不然会报ConcurrentException)，
+        //删除元素需要使用iterator来删除（不然会报checkForComodification）
+        for (Pair pair : pairList) {
+            if (pair.getMin() < end && start < pair.getMax()) {
+                return false;
+            }
+        }
+        pairList.add(new Pair(start,end));  //乌龙！！！这是单次预定，添加操作当然放在循环外面！！！
+        return true;
     }
+    /**
+     * List<int[]> calendar;
+     *
+     *     MyCalendar() {
+     *         calendar = new ArrayList();
+     *     }
+     *
+     *     public boolean book(int start, int end) {
+     *         for (int[] iv: calendar) {
+     *             if (iv[0] < end && start < iv[1]) return false;
+     *         }
+     *         calendar.add(new int[]{start, end});
+     *         return true;
+     *     }
+     */
 }
 
 /**

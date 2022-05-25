@@ -37,12 +37,24 @@ package topic.hashtable;
 // 
 // Related Topics 数组 哈希表 👍 283 👎 0
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class P554_BrickWall{
     public static void main(String[] args) {
         Solution solution = new P554_BrickWall().new Solution();
-        
+        int[][] arr = new int[][]{{1,2,2,1},{3,1,2},{1,3,2},{2,4},{3,1,2},{1,3,1,1}};
+        List<List<Integer>> wall = new ArrayList<>();
+        for (int[] ints : arr) {
+            List<Integer> row = new ArrayList<>();
+            for (int anInt : ints) {
+                row.add(anInt);
+            }
+            wall.add(row);
+        }
+        solution.leastBricks(wall);
     }
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -54,7 +66,30 @@ class Solution {
      * @return
      */
     public int leastBricks(List<List<Integer>> wall) {
-        return 0;
+//        int sumWidth = 0;
+//        for (Integer integer : wall.get(0)) {
+//            sumWidth += integer;
+//        }
+        int rowLen = wall.size();
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for (List<Integer> row : wall) {
+            int cur = 0;
+            int size = row.size();
+            for (int i = 0; i < size-1; i++) {//除去最后一块砖
+                cur += row.get(i);
+                map.put(cur,map.getOrDefault(cur,0)+1);
+            }
+        }
+        int max = 0;
+        int maxKey = 0;
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (max < entry.getValue()){
+                max = entry.getValue();
+                maxKey = entry.getKey();
+            }
+        }
+        //看清楚题目要求什么啊！！！！题目要看500遍！！！
+        return rowLen-max;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
